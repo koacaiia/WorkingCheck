@@ -15,8 +15,21 @@
 </head>
 <body>
     <div id="main">
-        <div id="date">
-            <h1>배정 요청일</h1>
+        <div id="dateDiv">
+            <h3 id="date"style="text-align: center;">배정 요청일</h3>
+            <script>
+                const today = new Date();
+                const year = today.getFullYear();
+                let month = today.getMonth() + 1;
+                let date = today.getDate();
+                if(month < 10){
+                    month = "0" + month;
+                }
+                if(date < 10){
+                    date = "0" + date;
+                }
+                document.getElementById("date").innerHTML=year + "년 " + month + "월 " + date + "일";
+            </script>    
         </div>
         <div class="mainDiv"id="nameDiv">
                 <select id="name" onchange="namdeChange()">
@@ -27,19 +40,39 @@
                     <option value="4">김현수 과장</option>
                 </select>
                 <input type="text" name="date" id="inputName" placeholder="작성자">
+                <script>
+                    function namdeChange(){
+                        const name = document.getElementById("name");
+                        const inputName = document.getElementById("inputName");
+                        inputName.value = name.options[name.selectedIndex].text;
+                    }
+                </script>    
         </div>    
         <div class="mainDiv" id="nopDiv">
-                <h5 >용역배정 인원</h5>
-                <input type="number" name="배정인원수" id="nop" placeholder="배정인원수">
+            <h5 >용역배정 인원(일반하역)</h5>
+            <input type="number" name="배정인원수" id="nopMn" placeholder=0>
+        </div>
+        <div class="mainDiv" id="nopDiv">
+            <h5 >용역배정 인원(특수하역)</h5>
+            <input type="number" name="배정인원수" id="nopMh" placeholder=0>
+        </div>
+        <div class="mainDiv" id="nopDiv">
+            <h5 >용역배정 인원(본사주부)</h5>
+            <input type="number" name="배정인원수" id="nopWm" placeholder=0>
+        </div>
+        <div class="mainDiv" id="nopDiv">
+            <h5 >용역배정 인원(외부주부)</h5>
+            <input type="number" name="배정인원수" id="nopWo" placeholder=0>
         </div>
         <div class="mainDiv" id="earlyWorkingDiv">
                 <h5>조기출근 인원</h5>
-                <input type="number" name="조기출근" id="earlyWorking" placeholder="조기출근">
+                <input type="number" name="조기출근" id="earlyWorking" placeholder=0>
+        </div>
+        <div id="btnDiv" >
+            <button id="btn" style="width:100%" onclick="submit()">등록</button>
         </div>    
     </div>
-    <div id="btnDiv">
-        <button id="btn" onclick="submit()">등록</button>
-    </div>
+    
     <script src="main.js" > </script> 
 </body>
 </html>
