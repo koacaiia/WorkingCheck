@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkingCheck</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-messaging-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-functions-compat.js"></script>
 </head>
 <body>
     <div id="main">
@@ -12,7 +19,6 @@
             <h1>배정 요청일</h1>
         </div>
         <div class="mainDiv"id="nameDiv">
-            <div>
                 <select id="name" onchange="namdeChange()">
                     <option value="0">이름 입력</option>
                     <option value="1">한기룡 과장</option>
@@ -21,7 +27,6 @@
                     <option value="4">김현수 과장</option>
                 </select>
                 <input type="text" name="date" id="inputName" placeholder="작성자">
-            </div>
         </div>    
         <div class="mainDiv" id="nopDiv">
                 <h5 >용역배정 인원</h5>
@@ -35,6 +40,6 @@
     <div id="btnDiv">
         <button id="btn" onclick="submit()">등록</button>
     </div>
-    
+    <script src="main.js" > </script> 
 </body>
 </html>
