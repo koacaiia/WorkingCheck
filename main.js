@@ -15,12 +15,14 @@ const storage_f = firebase.storage();
 const deptName = "WareHouseDept2";
 
 const main = document.getElementById('main');
+const result = document.getElementById('result');
 const mobileCheck=/Android|iPhone/i.test(navigator.userAgent);
 console.log(mobileCheck);
 if(!mobileCheck){
     // alert("모바일 환경에서는 사용이 제한됩니다.");
     // window.open("mobile.html");
     main.style.width = "30vw";
+    result.style.width = "30vw";
 }
 
 function submit(){
@@ -39,4 +41,43 @@ function submit(){
         nopWo: nopWo,
         eW: eW
     });
+    window.location.reload();
 }
+
+function resultSubmit(){
+    const date = document.getElementById('date').innerHTML;
+    const name = document.getElementById('inputName').value;
+    const nopMn = document.getElementById('r_nopMn');
+    const nopMh = document.getElementById('r_nopMh');
+    const nopWM = document.getElementById('r_nopWm');
+    const nopWo = document.getElementById('r_nopWo');
+    const eW= document.getElementById('r_earlyWorking');
+    const result = document.getElementById('r_submit');
+    
+    database_f.ref("DeptName/"+deptName+"/workingCheck/"+date).get().then((v)=>{
+        const database = v.val();
+        const keys = Object.keys(database);
+        let mN=0;
+        let mH=0;
+        let wM=0;
+        let wO=0;
+        let eWCount=0;
+        result.innerHTML ="직원 중 "+keys.length+" 명 용역배정등록"
+        keys.forEach((key)=>{
+            mN+=Number(database[key].nopMn);
+            mH+=Number(database[key].nopMh);
+            wM+=Number(database[key].nopWM);
+            wO+=Number(database[key].nopWo);
+            eWCount+=Number(database[key].eW);
+            console.log(mH,mN,wM,wO,eWCount)
+        });
+                    
+        nopMn.innerHTML = mN/keys.length+" 명";
+        nopMh.innerHTML = mH/keys.length+" 명";
+        nopWM.innerHTML = wM/keys.length+" 명";
+        nopWo.innerHTML = wO/keys.length+" 명";
+        eW.innerHTML = eWCount/keys.length+" 명";
+    });
+}
+
+resultSubmit();
