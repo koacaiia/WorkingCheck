@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkingCheck</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="main">
         <div id="date">
             <h1>배정 요청일</h1>
         </div>
-        <div id="nameDiv">
+        <div class="mainDiv"id="nameDiv">
             <div>
                 <select id="name" onchange="namdeChange()">
                     <option value="0">이름 입력</option>
@@ -22,12 +23,17 @@
                 <input type="text" name="date" id="inputName" placeholder="작성자">
             </div>
         </div>    
-        <div id="nopDiv">
+        <div class="mainDiv" id="nopDiv">
+                <h5 >용역배정 인원</h5>
                 <input type="number" name="배정인원수" id="nop" placeholder="배정인원수">
         </div>
-        <div id="earlyWorkingDiv">
+        <div class="mainDiv" id="earlyWorkingDiv">
+                <h5>조기출근 인원</h5>
                 <input type="number" name="조기출근" id="earlyWorking" placeholder="조기출근">
         </div>    
+    </div>
+    <div id="btnDiv">
+        <button id="btn" onclick="submit()">등록</button>
     </div>
     
 </body>
