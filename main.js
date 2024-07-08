@@ -17,7 +17,6 @@ const deptName = "WareHouseDept2";
 const main = document.getElementById('main');
 const result = document.getElementById('result');
 const mobileCheck=/Android|iPhone/i.test(navigator.userAgent);
-console.log(mobileCheck);
 if(!mobileCheck){
     // alert("모바일 환경에서는 사용이 제한됩니다.");
     // window.open("mobile.html");
@@ -33,6 +32,10 @@ function submit(){
     const nopWM = document.getElementById('nopWm').value;
     const nopWo = document.getElementById('nopWo').value;
     const eW= document.getElementById('earlyWorking').value;
+    if(name.type == undefined){
+        alert("이름을 입력해주세요");
+        return;
+    }
     database_f.ref("DeptName/"+deptName+"/workingCheck/"+date+"/"+name).update({
         name: name,
         nopMn: nopMn,
@@ -69,7 +72,6 @@ function resultSubmit(){
             wM+=Number(database[key].nopWM);
             wO+=Number(database[key].nopWo);
             eWCount+=Number(database[key].eW);
-            console.log(mH,mN,wM,wO,eWCount)
         });
                     
         nopMn.innerHTML = mN/keys.length+" 명";
