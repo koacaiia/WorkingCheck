@@ -32,10 +32,11 @@ function submit(){
     const nopWM = document.getElementById('nopWm').value;
     const nopWo = document.getElementById('nopWo').value;
     const eW= document.getElementById('earlyWorking').value;
-    if(name.type == undefined){
-        alert("이름을 입력해주세요");
-        return;
-    }
+    // console.log(name.type);
+    // if(name.type == undefined){
+    //     alert("이름을 입력해주세요");
+    //     return;
+    // }
     database_f.ref("DeptName/"+deptName+"/workingCheck/"+date+"/"+name).update({
         name: name,
         nopMn: nopMn,
@@ -59,6 +60,7 @@ function resultSubmit(){
     
     database_f.ref("DeptName/"+deptName+"/workingCheck/"+date).get().then((v)=>{
         const database = v.val();
+        if(database == null) return;
         const keys = Object.keys(database);
         let mN=0;
         let mH=0;
